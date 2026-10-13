@@ -1,0 +1,105 @@
+/* ═══ 첫 화면 커스텀 — 검색창 타이핑 → 확대 → 떠다니는 검색창 + 가운데 제목 ═══
+   학생 요청(6주 STEP 05): 첨부 영상의 흐름만 옮김. 로고·문구·영상 화면은 가져오지 않음.
+   값을 바꾸고 싶으면 아래 --hx-* 줄만 고친다. */
+.hx {
+  --hx-bg: color-mix(in srgb, var(--mo-ink) 62%, var(--mo-point));   /* 2막 바탕 */
+  --hx-grid: color-mix(in srgb, #fff 10%, transparent);                /* 격자 선 */
+  --hx-bar: color-mix(in srgb, #fff 94%, transparent);                 /* 검색창 면 */
+  --hx-bar-ink: var(--mo-ink);
+  --hx-title: #fff;
+  background: #000;
+}
+
+/* 1막 — 사진이 차례로 바뀐다 */
+.hx .hx-photos img { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; }
+.hx .hx-photos img.on { opacity: 1; }
+.hx .hx-photos { transition: opacity .9s ease; }
+.hx.act2 .hx-photos { opacity: 0; }
+
+/* 2막 — 격자 바탕 */
+.hx-grid {
+  position: absolute; inset: 0; z-index: 1; opacity: 0; transition: opacity .9s ease;
+  background-color: var(--hx-bg);
+  /* 학생 요청: 격자 무늬 대신 공간 1 사진 4(걷다가 올려다 본 하늘). 흰 제목이 보이도록 위에 옅은 어둠 한 겹 */
+  background-image:
+    linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)),
+    url("assets/space1_04.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.hx.act2 .hx-grid { opacity: 1; }
+
+/* 검색창 공통 */
+.hx-pill {
+  display: inline-flex; align-items: center; gap: .55em; white-space: nowrap;
+  padding: .55em 1.1em .55em .9em; border-radius: 999px;
+  background: var(--hx-bar); color: var(--hx-bar-ink);
+  font-family: 'Pretendard Variable', Pretendard, sans-serif; font-weight: 500; letter-spacing: -.01em;
+  box-shadow: 0 6px 24px rgba(0,0,0,.12);
+}
+.hx-pill svg { width: 1em; height: 1em; flex: none; opacity: .55; }
+.hx-caret { display: inline-block; width: 1.5px; height: 1.1em; background: currentColor; margin-left: 1px; animation: hx-blink 1s steps(1) infinite; }
+@keyframes hx-blink { 50% { opacity: 0; } }
+
+/* 가운데 검색창 — 타이핑하고, 확대됐다 돌아온다 */
+.hx-search {
+  position: absolute; left: 50%; top: 50%; z-index: 4;
+  font-size: clamp(16px, 2.2vw, 26px);
+  transform: translate(-50%, -50%) scale(.96); opacity: 0;
+  transition: transform .9s cubic-bezier(.22,1,.36,1), opacity .5s ease;
+}
+.hx.s-in .hx-search { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.hx.s-zoom .hx-search { transform: translate(-50%, -50%) scale(2.4); }
+.hx.s-out .hx-search { opacity: 0; transform: translate(-50%, -50%) scale(.9); }
+
+/* 2막 가운데 사진 카드 — 잠깐 떴다 사라진다 */
+.hx-card {
+  position: absolute; left: 50%; top: 50%; z-index: 3; width: min(46vw, 560px); aspect-ratio: 16 / 9;
+  transform: translate(-50%, -50%) scale(.92); opacity: 0; overflow: hidden;
+  transition: opacity .6s ease, transform .9s cubic-bezier(.22,1,.36,1);
+}
+.hx-card img { width: 100%; height: 100%; object-fit: cover; }
+.hx.c-in .hx-card { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+/* 떠다니는 검색창들 */
+.hx-float { position: absolute; inset: 0; z-index: 2; overflow: hidden; pointer-events: none; }
+.hx-float .hx-pill {
+  position: absolute; left: var(--x); top: var(--y); font-size: var(--fs);
+  opacity: 0; filter: blur(var(--bl, 0));
+  transition: opacity .8s ease var(--dl, 0s);
+  animation: hx-drift var(--du, 22s) ease-in-out infinite alternate;
+}
+.hx.f-in .hx-float .hx-pill { opacity: var(--op, 1); }
+@keyframes hx-drift { from { transform: translateX(-6vw); } to { transform: translateX(6vw); } }
+
+/* 가운데 제목 — 마지막에 뜬다 */
+.hx .hx-title {
+  position: absolute; inset: 0; z-index: 5; margin: 0;
+  display: grid; place-items: center; text-align: center;
+  opacity: 0; transform: translateY(10px); transition: opacity 1s ease, transform 1.2s cubic-bezier(.22,1,.36,1);
+  pointer-events: none;
+}
+.hx .hx-title .mo-h1 { color: var(--hx-title); font-family: 'Noto Serif KR', serif; font-weight: 300; max-width: 14em; text-shadow: 0 2px 30px rgba(0,0,0,.25); }
+.hx.t-in .hx-title { opacity: 1; transform: none; }
+
+/* 움직임 0 · 움직임 줄이기 — 마지막 장면으로 바로 */
+.hx.static .hx-float .hx-pill { animation: none; transition: none; }
+.hx.static * { transition: none !important; }
+
+@media (max-width: 767px) {
+  .hx-card { width: 78vw; }
+  .hx.s-zoom .hx-search { transform: translate(-50%, -50%) scale(1.5); }
+  .hx-search { font-size: 15px; }
+}
+@media (max-width: 767px) {
+  .hx-float .hx-pill { font-size: calc(var(--fs) * .7); }
+}
+
+/* 소리 버튼 — 첫 화면 오른쪽 아래 */
+.hx-sound {
+  position: absolute; right: var(--mo-gut); bottom: var(--mo-gut); z-index: 7;
+  font-size: 13px; cursor: pointer; border: 0; pointer-events: auto;
+  background: color-mix(in srgb, #fff 82%, transparent); backdrop-filter: blur(6px);
+}
+.hx-sound.is-on { background: var(--hx-bar); }
+.hx-sound:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }

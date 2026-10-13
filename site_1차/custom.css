@@ -1,0 +1,57 @@
+/* ═══ 6주 커스텀 — 학생 요청 ═══ */
+
+/* 소개 오른쪽 목록(1장·2장·3장): 아코디언 대신 셋 다 펼침, 상자는 글 높이만큼 */
+.mo-all-open .mo-mod-body { grid-template-rows: 1fr; opacity: 1; transition: none; }
+.mo-all-open .mo-mod-in::after { height: 0; }                       /* 열린 모듈 아래 100px 빈칸 없앰 */
+.mo-all-open .mo-mod-in::before { height: 4px; }
+.mo-all-open .mo-mod > h3 .mo-mod-btn,
+.mo-all-open .mo-mod.is-open > h3 .mo-mod-btn { font-size: var(--mo-h3); cursor: default; background: none; padding-left: var(--mo-cell); transition: none; }
+
+/* 1장 시선 — 레퍼런스 배치(왼쪽 판 + 오른쪽 큰 사진). 색·서체·선·모서리 표식은 시스템 값 그대로 */
+.sv { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; height: 100svh; min-height: 560px; margin-top: var(--mo-space); background: var(--mo-paper); color: var(--mo-ink); }
+.sv-panel { position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: calc(var(--mo-gut) + 40px) var(--mo-gut) var(--mo-gut); min-width: 0; }
+.sv-title, .sv-tab { font: var(--mo-w-head) var(--mo-p)/1.2 var(--mo-f-head); letter-spacing: -.01em; }
+.sv-title { writing-mode: vertical-rl; text-orientation: sideways; white-space: nowrap; margin: 0; }   /* 가로 글줄 "1장 시선"을 통째로 시계 방향 90도 돌림(학생 요청) */
+.sv-tabs { display: flex; flex-direction: column; gap: 14px; }
+.sv-tab { writing-mode: vertical-rl; padding: 6px 2px; color: var(--mo-ink); opacity: .35; cursor: pointer; transition: opacity .3s var(--mo-ease); }
+.sv-tab:hover, .sv-tab.is-on { opacity: 1; }
+.sv-thumbs { position: relative; justify-self: center; height: 100%; max-height: 640px; display: flex; flex-direction: column; justify-content: center; }
+.sv-set { display: flex; flex-direction: column; gap: 10px; }
+.sv-set[hidden] { display: none; }
+.sv-th { display: block; height: clamp(72px, calc((100svh - 240px) / 5), 128px); aspect-ratio: 4 / 5; padding: 0; cursor: pointer; overflow: hidden; }
+.sv-th img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .3s var(--mo-ease); }
+.sv-th:not(.is-sel) img { opacity: .75; }
+.sv-th:hover img { opacity: 1; }
+.sv-th.is-sel { outline: var(--mo-line) solid var(--mo-ink); outline-offset: 5px; }
+.sv-dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--mo-ink); transform: translate(-60%, -60%); transition: top .4s var(--mo-ease-out), left .4s var(--mo-ease-out); pointer-events: none; }
+.sv-stage { position: relative; overflow: hidden; background: color-mix(in srgb, var(--mo-ink) 10%, transparent); }
+.sv-big { position: absolute; inset: 0; margin: 0; }
+.sv-big img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: opacity .35s var(--mo-ease); }
+.sv-big.is-swap img { opacity: 0; }
+.sv-cap { position: absolute; left: var(--mo-gut); right: var(--mo-gut); bottom: var(--mo-gut); max-width: 30em; padding: var(--mo-cell); background: var(--mo-paper); font-size: calc(var(--mo-p) * .85); line-height: 1.55; }
+.sv-cap[hidden] { display: none; }
+.sv-cap-h { font-weight: var(--mo-w-head); font-family: var(--mo-f-head); margin-bottom: 6px; }
+
+@media (max-width: 767px) {
+  .sv { grid-template-columns: 1fr; height: auto; min-height: 0; }
+  .sv-stage { order: -1; aspect-ratio: 4 / 5; }
+  .sv-panel { grid-template-columns: 1fr; gap: 16px; padding: var(--mo-gut); }
+  .sv-title, .sv-tab { writing-mode: horizontal-tb; transform: none; }
+  .sv-tabs { flex-direction: row; gap: 18px; order: 2; }
+  .sv-thumbs { justify-self: stretch; height: auto; order: 3; overflow-x: auto; padding: 8px 6px; }
+  .sv-set { flex-direction: row; }
+  .sv-th { height: 90px; flex: none; }
+  .sv-dot { display: none; }
+  .sv-cap { position: static; max-width: none; margin: 0; border: 0; }
+}
+
+
+/* 1장 사진 줄 — 고른 사진 왼쪽 위 점 표시 뺌(학생 요청). 사각 테두리는 그대로 */
+.sv-dot { display: none; }
+
+/* 1장 사진 줄 — 고른 사진 테두리가 부드럽게 옮겨 감(학생 요청). 사진마다 붙던 테두리 대신 테두리 하나가 움직인다 */
+.sv-th.is-sel { outline: none; }
+.sv-frame { position: absolute; left: 0; top: 0; width: 0; height: 0; margin: -5px; padding: 5px; box-sizing: content-box; border: var(--mo-line) solid var(--mo-ink); opacity: 0; pointer-events: none;
+  transition: left .45s var(--mo-ease-out), top .45s var(--mo-ease-out), width .45s var(--mo-ease-out), height .45s var(--mo-ease-out), opacity .3s ease; }
+.sv-frame.is-on { opacity: 1; }
+.m0 .sv-frame { transition: none; }
