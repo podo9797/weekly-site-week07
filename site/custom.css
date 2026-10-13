@@ -1,0 +1,152 @@
+/* ═══ 6주 커스텀 — 학생 요청 ═══ */
+
+/* 소개 오른쪽 목록(1장·2장·3장): 아코디언 대신 셋 다 펼침, 상자는 글 높이만큼 */
+.mo-all-open .mo-mod-body { grid-template-rows: 1fr; opacity: 1; transition: none; }
+.mo-all-open .mo-mod-in::after { height: 0; }                       /* 열린 모듈 아래 100px 빈칸 없앰 */
+.mo-all-open .mo-mod-in::before { height: 4px; }
+.mo-all-open .mo-mod > h3 .mo-mod-btn,
+.mo-all-open .mo-mod.is-open > h3 .mo-mod-btn { font-size: var(--mo-h3); cursor: default; background: none; padding-left: var(--mo-cell); transition: none; }
+
+/* 1장 시선 — 레퍼런스 배치(왼쪽 판 + 오른쪽 큰 사진). 색·서체·선·모서리 표식은 시스템 값 그대로 */
+.sv { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; height: 100svh; min-height: 560px; margin-top: var(--mo-space); background: var(--mo-paper); color: var(--mo-ink); }
+.sv-panel { position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: calc(var(--mo-gut) + 40px) var(--mo-gut) var(--mo-gut); min-width: 0; }
+.sv-title, .sv-tab { font: var(--mo-w-head) var(--mo-p)/1.2 var(--mo-f-head); letter-spacing: -.01em; }
+.sv-title { writing-mode: vertical-rl; text-orientation: sideways; white-space: nowrap; margin: 0; }   /* 가로 글줄 "1장 시선"을 통째로 시계 방향 90도 돌림(학생 요청) */
+.sv-tabs { display: flex; flex-direction: column; gap: 14px; }
+.sv-tab { writing-mode: vertical-rl; padding: 6px 2px; color: var(--mo-ink); opacity: .35; cursor: pointer; transition: opacity .3s var(--mo-ease); }
+.sv-tab:hover, .sv-tab.is-on { opacity: 1; }
+.sv-thumbs { position: relative; justify-self: center; height: 100%; max-height: 640px; display: flex; flex-direction: column; justify-content: center; }
+.sv-set { display: flex; flex-direction: column; gap: 10px; }
+.sv-set[hidden] { display: none; }
+.sv-th { display: block; height: clamp(72px, calc((100svh - 240px) / 5), 128px); aspect-ratio: 4 / 5; padding: 0; cursor: pointer; overflow: hidden; }
+.sv-th img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .3s var(--mo-ease); }
+.sv-th:not(.is-sel) img { opacity: .75; }
+.sv-th:hover img { opacity: 1; }
+.sv-th.is-sel { outline: var(--mo-line) solid var(--mo-ink); outline-offset: 5px; }
+.sv-dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--mo-ink); transform: translate(-60%, -60%); transition: top .4s var(--mo-ease-out), left .4s var(--mo-ease-out); pointer-events: none; }
+.sv-stage { position: relative; overflow: hidden; background: color-mix(in srgb, var(--mo-ink) 10%, transparent); }
+.sv-big { position: absolute; inset: 0; margin: 0; }
+.sv-big img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: opacity .35s var(--mo-ease); }
+.sv-big.is-swap img { opacity: 0; }
+.sv-cap { position: absolute; left: var(--mo-gut); right: var(--mo-gut); bottom: var(--mo-gut); max-width: 30em; padding: var(--mo-cell); background: var(--mo-paper); font-size: calc(var(--mo-p) * .85); line-height: 1.55; }
+.sv-cap[hidden] { display: none; }
+.sv-cap-h { font-weight: var(--mo-w-head); font-family: var(--mo-f-head); margin-bottom: 6px; }
+
+@media (max-width: 767px) {
+  .sv { grid-template-columns: 1fr; height: auto; min-height: 0; }
+  .sv-stage { order: -1; aspect-ratio: 4 / 5; }
+  .sv-panel { grid-template-columns: 1fr; gap: 16px; padding: var(--mo-gut); }
+  .sv-title, .sv-tab { writing-mode: horizontal-tb; transform: none; }
+  .sv-tabs { flex-direction: row; gap: 18px; order: 2; }
+  .sv-thumbs { justify-self: stretch; height: auto; order: 3; overflow-x: auto; padding: 8px 6px; }
+  .sv-set { flex-direction: row; }
+  .sv-th { height: 90px; flex: none; }
+  .sv-dot { display: none; }
+  .sv-cap { position: static; max-width: none; margin: 0; border: 0; }
+}
+
+
+/* 1장 사진 줄 — 고른 사진 왼쪽 위 점 표시 뺌(학생 요청). 사각 테두리는 그대로 */
+.sv-dot { display: none; }
+
+/* 1장 사진 줄 — 고른 사진 테두리가 부드럽게 옮겨 감(학생 요청). 사진마다 붙던 테두리 대신 테두리 하나가 움직인다 */
+.sv-th.is-sel { outline: none; }
+.sv-frame { position: absolute; left: 0; top: 0; width: 0; height: 0; margin: -5px; padding: 5px; box-sizing: content-box; border: var(--mo-line) solid var(--mo-ink); opacity: 0; pointer-events: none;
+  transition: left .45s var(--mo-ease-out), top .45s var(--mo-ease-out), width .45s var(--mo-ease-out), height .45s var(--mo-ease-out), opacity .3s ease; }
+.sv-frame.is-on { opacity: 1; }
+.m0 .sv-frame { transition: none; }
+
+/* 7주 커스텀 — 4장 물건 가로 펼침 (학생 요청: 아코디언 대신 가로로 모두 펼침)
+   칸 = 사진 → 번호·이름 → 언제·어떻게 → 고른 이유. 색·서체·선·모서리 표식(.mo-box)은 시스템 값 그대로, 새 색 없음 */
+#s7 .ob-row { grid-column: 1 / -1; align-self: stretch; list-style: none; margin: var(--mo-gap-l) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--mo-gap); }
+#s7 .ob-card { display: flex; flex-direction: column; gap: 10px; padding: var(--mo-cell); min-width: 0; }
+#s7 .ob-fig { margin: calc(var(--mo-cell) * -1) calc(var(--mo-cell) * -1) 5px; aspect-ratio: 3 / 4; overflow: hidden;
+  background: color-mix(in srgb, var(--mo-ink) 10%, transparent); }
+#s7 .ob-fig img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; }
+#s7 .ob-h { font: var(--mo-w-head) var(--mo-h3)/1.25 var(--mo-f-head); }
+#s7 .ob-when, #s7 .ob-why { font-size: var(--mo-p); line-height: var(--mo-p-lh); }
+#s7 .ob-when { opacity: .75; }                                                       /* 언제·어떻게 = 한 단계 옅게 */
+#s7 .ob-why { margin-top: auto; padding-top: 10px; border-top: var(--mo-line) solid var(--mo-lc); }   /* 고른 이유 = 얇은 선 아래, 칸 바닥에 맞춤 */
+
+/* 1023px 이하(태블릿·폰): 섹션 안에서만 가로로 밀어 넘김 — 페이지 전체에는 가로 스크롤 없음 */
+@media (max-width: 1023px) {
+  #s7 .ob-row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(75vw, 340px);
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    margin-left: calc(var(--mo-gut) * -1); margin-right: calc(var(--mo-gut) * -1);
+    padding: 8px var(--mo-gut) 12px; scroll-padding-inline: var(--mo-gut); }      /* 위아래 여백 = 모서리 표식이 잘리지 않게 */
+  #s7 .ob-card { scroll-snap-align: start; }
+}
+@media (max-width: 768px) { #s7 .ob-row { margin-top: 0; } }   /* 폰: 섹션 한 칸 배치의 간격(20px)만 — 제목과 줄 사이가 벌어지지 않게 */
+
+/* 7주 커스텀 — 2장 사람 3단 판 (학생 요청: 잡지 펼침면 배치)
+   왼쪽 글 판(라벨 위 · 제목·소개·이유·가져올 한 가지 바닥에) / 가운데 사진 두 장 위아래 / 오른쪽 세로 사진 한 장.
+   색·서체·선·간격은 시스템 토큰 그대로, 새 색·서체 없음. 판 높이 = 화면 85% 또는 글 높이 중 큰 쪽(글 잘림 없음) */
+#s3b .pp-board { grid-column: 1 / -1; display: grid; grid-template-columns: 3fr 3fr 4fr; gap: var(--mo-cell);
+  min-height: 85vh; min-height: 85svh; background: var(--mo-paper); }
+#s3b .pp-text { display: flex; flex-direction: column; justify-content: space-between; gap: var(--mo-gap-l); min-width: 0; padding-right: var(--mo-gap); }
+#s3b .pp-text .mo-label { padding-right: 0; }
+#s3b .pp-body { display: flex; flex-direction: column; gap: var(--mo-gap); }
+#s3b .pp-body .mo-h2 { margin-bottom: 4px; }
+#s3b .pp-item { display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: var(--mo-line) solid var(--mo-lc);
+  font-size: var(--mo-p); line-height: var(--mo-p-lh); }
+#s3b .pp-h { margin: 0; font: var(--mo-w-head) var(--mo-p)/1.35 var(--mo-f-head); }
+#s3b .pp-item p { margin: 0; }
+#s3b .pp-item .mo-arrow { align-self: flex-start; }
+#s3b .pp-pair { display: grid; grid-template-rows: 1fr 1fr; gap: var(--mo-cell); min-width: 0; }
+#s3b .pp-fig { position: relative; margin: 0; min-width: 0; min-height: 0; overflow: hidden; background: color-mix(in srgb, var(--mo-ink) 10%, transparent); }
+#s3b .pp-fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; }
+
+/* 1023px 이하: 한 줄씩 쌓기 — 글 판 → 사진 두 장 나란히 → 세로 사진. 페이지 가로 스크롤 없음 */
+@media (max-width: 1023px) {
+  #s3b .pp-board { grid-template-columns: 1fr; min-height: 0; gap: var(--mo-cell); }
+  #s3b .pp-text { padding-right: 0; margin-bottom: var(--mo-gap); }
+  #s3b .pp-pair { grid-template-rows: none; grid-template-columns: 1fr 1fr; }
+  #s3b .pp-pair .pp-fig { aspect-ratio: 3 / 4; }
+  #s3b .pp-tall { aspect-ratio: 4 / 5; }
+}
+@media (max-width: 768px) {
+  #s3b .pp-text { gap: var(--mo-gap); }
+  #s3b .pp-item .mo-arrow { padding: 11px 0; margin: -11px 0; min-width: 44px; }   /* 누르는 면 44px, 배치는 그대로 */
+}
+
+/* 7주 커스텀 — 4장 물건 가운데 선 높이 통일 (학생 요청: 03 우산의 선 기준으로 모두 같게)
+   다섯 칸이 행(사진 · 이름 · 언제·어떻게 · 고른 이유)을 함께 쓰게(subgrid) 해서, 가장 긴 '언제·어떻게'(03 우산) 바로 아래 높이에 선이 모두 맞춰진다 */
+#s7 .ob-row { grid-template-rows: repeat(4, auto); }
+#s7 .ob-card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 10px; align-content: start; }
+#s7 .ob-why { margin-top: 0; align-self: start; }
+
+/* 7주 커스텀 — 4장 물건 사진이 물건 전체를 보여 주게 (학생 요청: 물건이 전체적으로 잘 보이게 이미지마다 크기 조절)
+   칸 비율 3:4(세로) → 4:3(가로): 가로로 찍은 사진 넷이 덜 잘린다. 사진마다 물건 자리에 맞춰 위치를 옮기고,
+   물건이 사진 끝까지 닿는 우산(03)만 사진 전체를 담고 남는 위아래는 같은 사진을 흐리게 깔아 채운다 */
+#s7 .ob-fig { aspect-ratio: 4 / 3; position: relative; }
+#s7 .ob-card:nth-child(1) .ob-fig img { object-position: 50% 44%; }   /* 01 무선 이어폰 — 케이스와 고리가 함께 */
+#s7 .ob-card:nth-child(5) .ob-fig img { object-position: 45% 50%; }   /* 05 샤프 — 비스듬한 몸체 전체 */
+#s7 .ob-fit::before { content: ""; position: absolute; inset: -12px; background: var(--ob-bg) center / cover; filter: blur(10px); }
+#s7 .ob-fit img { position: relative; object-fit: contain; }
+
+/* 7주 커스텀 — 2장 사람 오른쪽 사진 크기 줄이기 (학생 요청: 화질이 깨지지 않을 정도까지)
+   w05_photo3.jpg 원본은 447×447. 세로로 긴 단을 채우면 두 배 넘게 늘어나 흐려지므로, 1024 이상에서는
+   원본 크기(447px)를 넘지 않는 정사각형으로 두고 단 바닥(왼쪽 글과 같은 줄)에 붙인다 */
+@media (min-width: 1024px) {
+  #s3b .pp-tall { align-self: end; width: 100%; max-width: 447px; aspect-ratio: 1 / 1; }
+}
+
+/* 7주 커스텀 — 2장 오른쪽 사진 다시 키우기 (학생 요청: 화질이 깨지지 않는 선에서 레이아웃에 맞게)
+   단 폭을 다 쓰고, 높이는 가운데 아래 사진과 같게 맞춰 두 사진의 위아래 선을 맞춘다. 원본 447px 대비 약 1.06배라 흐려지지 않는다 */
+@media (min-width: 1024px) {
+  #s3b .pp-tall { max-width: none; aspect-ratio: auto; height: calc((100% - var(--mo-cell)) / 2); }
+}
+
+/* 7주 커스텀 — 2장 오른쪽 사진을 단 전체 크기로 (학생 요청: 레이아웃 사이즈만큼). 위 두 블록의 크기 제한을 풀어 단 높이 가득 채움.
+   원본 447×447이라 약 2배 늘어나 흐려질 수 있음 — 더 큰 원본으로 바꾸면 선명해진다 */
+@media (min-width: 1024px) {
+  #s3b .pp-tall { align-self: stretch; width: auto; max-width: none; height: auto; aspect-ratio: auto; }
+}
+
+/* 7주 커스텀 — 4장 물건 카드 모서리 점(표식) 빼기 (학생 요청). 1px 테두리는 그대로 */
+#s7 .ob-card::before, #s7 .ob-card::after { display: none; }
+
+/* 7주 커스텀 — 4장 물건 카드 내용(언제·어떻게 · 고른 이유) 글꼴을 산세리프로, 크기 조금 작게 (학생 요청)
+   글꼴 = 시스템 제목 산세리프(Pretendard) 보통 굵기, 크기 = 본문의 90% (1280: 18 → 약 16px, 폰: 14 → 약 12.6px) */
+#s7 .ob-when, #s7 .ob-why { font-family: var(--mo-f-head); font-weight: 400; font-size: calc(var(--mo-p) * .9); line-height: 1.6; }

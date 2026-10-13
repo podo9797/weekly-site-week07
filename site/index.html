@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>원종은 — 나의 취향 아카이브</title>
+<meta name="description" content="여행자의 눈으로 풍경을 담는 사람">
+<meta property="og:type" content="website">
+<meta property="og:title" content="원종은 — 나의 취향 아카이브">
+<meta property="og:description" content="여행자의 눈으로 풍경을 담는 사람">
+<meta property="og:image" content="assets/space1_01.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;600&family=Nanum+Gothic+Coding:wght@400;700&family=Jua&family=Gowun+Dodum&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="my-style.css">
+<link rel="stylesheet" href="hero.css">
+<link rel="stylesheet" href="custom.css">
+</head>
+<body>
+
+<!-- 상단 바 — 왼쪽 절반 = 이름 칸, 오른쪽 절반 = 메뉴 칸 넷. 사진 위에서는 옅은 선, 200px 내려가면 바탕이 채워지고 이름이 작아진다 -->
+<header class="mo-bar">
+  <div class="mo-bar-row">
+    <div class="mo-bar-l">
+      <a class="mo-logo mo-box" href="#top">원종은</a>
+    </div>
+    <nav class="mo-bar-r" aria-label="섹션">
+      <a class="mo-menu mo-box" href="#s3">시선</a>
+      <a class="mo-menu mo-box" href="#s3b">사람</a>
+      <a class="mo-menu mo-box" href="#s4">공간</a>
+      <a class="mo-menu mo-box" href="#s7">물건</a>
+      <a class="mo-menu mo-box" href="#s6">기준</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ① 첫 화면 — 커스텀(학생 요청): 사진이 바뀌는 위로 검색창이 질문을 입력 → 확대 → 격자 바탕에 검색창들이 떠다니고 가운데 제목. hero.css · hero.js -->
+  <section class="mo-hero hx" id="top">
+    <figure class="mo-hero-fig hx-photos">
+      <img src="assets/space1_01.jpg" width="4000" height="3000" alt="3장 공간 자연, 하늘, 꽃 사진 1">
+      <img src="assets/space2_04.jpg" alt="" aria-hidden="true">
+      <img src="assets/space3_05.jpg" alt="" aria-hidden="true">
+      <img src="assets/space1_04.jpg" alt="" aria-hidden="true">
+      <img src="assets/space2_05.jpg" alt="" aria-hidden="true">
+      <img src="assets/space3_02.jpg" alt="" aria-hidden="true">
+    </figure>
+    <div class="hx-grid" aria-hidden="true"></div>
+    <div class="hx-float" aria-hidden="true"></div>
+    <div class="hx-search hx-pill" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="hx-q"></span><i class="hx-caret"></i></div>
+    <div class="mo-hero-in hx-title">
+      <h1 class="mo-h1">일상과 비일상 속의 아름다움</h1>
+    </div>
+  </section>
+
+  <!-- ② 들어가는 말(소개) — 왼쪽 2/3 소개 문장, 오른쪽 1/3 장 목록(화면에 붙어 따라옴). 모듈은 한 번에 하나만 열린다 -->
+  <section class="mo-intro" id="s1">
+    <div class="mo-intro-l">
+      <h2 class="mo-h2">여행자의 눈으로 풍경을 담는 사람</h2>
+    </div>
+    <div class="mo-intro-r">
+      <div class="mo-mods mo-all-open" data-mo="one">
+        <div class="mo-mod"><h3><span class="mo-mod-btn">1장 시선</span></h3>
+          <div class="mo-mod-body"><div class="mo-mod-in"><p>빛이 하늘을 물들이는 순간처럼, 평범한 장면이 특별해지는 때를 고른다</p></div></div></div>
+        <div class="mo-mod"><h3><span class="mo-mod-btn">2장 사람</span></h3>
+          <div class="mo-mod-body"><div class="mo-mod-in"><p>보는 사람을 그 안으로 끌어들이는 몰입감을 기준으로 고른다</p></div></div></div>
+        <div class="mo-mod"><h3><span class="mo-mod-btn">3장 공간</span></h3>
+          <div class="mo-mod-body"><div class="mo-mod-in"><p>사진을 보자마자 떠오르는 추억이 있는 것을 기준으로 고른다.</p></div></div></div>
+        <div class="mo-mod"><h3><span class="mo-mod-btn">4장 물건</span></h3>
+          <div class="mo-mod-body"><div class="mo-mod-in"><p>기능이 좋거나 마음이 담긴 물건을 기준으로 고른다</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 1장 시선 — 커스텀(학생 요청): 왼쪽 판 = 세로 제목 · 세로 사진 줄 · 세로 묶음 이름, 오른쪽 = 고른 사진 크게. custom.css · custom.js -->
+  <section class="sv" id="s3" aria-labelledby="sv-h">
+    <div class="sv-panel">
+      <h2 class="sv-title" id="sv-h">1장 시선</h2>
+    <div class="sv-thumbs">
+
+      <div class="sv-set" data-g="sky">
+        <button class="sv-th is-sel" type="button" data-src="assets/w04_sky1.jpg" aria-label="하늘 사진 1 크게 보기"><img src="assets/w04_sky1.jpg" alt="1장 시선 하늘 사진 1" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_sky2.jpg" aria-label="하늘 사진 2 크게 보기"><img src="assets/w04_sky2.jpg" alt="1장 시선 하늘 사진 2" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_sky3.jpg" aria-label="하늘 사진 3 크게 보기"><img src="assets/w04_sky3.jpg" alt="1장 시선 하늘 사진 3" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_sky4.jpg" aria-label="하늘 사진 4 크게 보기"><img src="assets/w04_sky4.jpg" alt="1장 시선 하늘 사진 4" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_sky5.jpg" aria-label="하늘 사진 5 크게 보기"><img src="assets/w04_sky5.jpg" alt="1장 시선 하늘 사진 5" loading="lazy"></button>
+      </div>
+      <div class="sv-set" data-g="hand" hidden>
+        <button class="sv-th" type="button" data-src="assets/w04_hand1.jpg" aria-label="손 사진 1 크게 보기"><img src="assets/w04_hand1.jpg" alt="1장 시선 손 사진 1" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_hand2.jpg" aria-label="손 사진 2 크게 보기"><img src="assets/w04_hand2.jpg" alt="1장 시선 손 사진 2" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_hand3.jpg" aria-label="손 사진 3 크게 보기"><img src="assets/w04_hand3.jpg" alt="1장 시선 손 사진 3" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_hand4.jpg" aria-label="손 사진 4 크게 보기"><img src="assets/w04_hand4.jpg" alt="1장 시선 손 사진 4" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_hand5.jpg" aria-label="손 사진 5 크게 보기"><img src="assets/w04_hand5.jpg" alt="1장 시선 손 사진 5" loading="lazy"></button>
+      </div>
+      <div class="sv-set" data-g="road" hidden>
+        <button class="sv-th" type="button" data-src="assets/w04_road1.jpg" aria-label="길 사진 1 크게 보기"><img src="assets/w04_road1.jpg" alt="1장 시선 길 사진 1" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_road2.jpg" aria-label="길 사진 2 크게 보기"><img src="assets/w04_road2.jpg" alt="1장 시선 길 사진 2" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_road3.jpg" aria-label="길 사진 3 크게 보기"><img src="assets/w04_road3.jpg" alt="1장 시선 길 사진 3" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_road4.jpg" aria-label="길 사진 4 크게 보기"><img src="assets/w04_road4.jpg" alt="1장 시선 길 사진 4" loading="lazy"></button>
+        <button class="sv-th" type="button" data-src="assets/w04_road5.jpg" aria-label="길 사진 5 크게 보기"><img src="assets/w04_road5.jpg" alt="1장 시선 길 사진 5" loading="lazy"></button>
+      </div>
+    </div>
+      <div class="sv-tabs" aria-label="1장 시선 묶음">
+        <button class="sv-tab is-on" type="button" data-g="sky" aria-pressed="true">하늘</button>
+        <button class="sv-tab" type="button" data-g="hand" aria-pressed="false">손</button>
+        <button class="sv-tab" type="button" data-g="road" aria-pressed="false">길</button>
+      </div>
+    </div>
+    <div class="sv-stage">
+      <figure class="sv-big"><img src="assets/w04_sky1.jpg" alt="1장 시선 하늘 사진 1"></figure>
+      <div class="sv-cap mo-box" data-g="sky"><p class="sv-cap-h">하늘 — 탁 트인 하늘 / 맑은 날·흐린 날(밤 포함)</p><p>밤하늘에 별이 빛나는 모습이나 노을이 지며 하늘이 황금빛으로 물드는 게 좋아서 골랐다</p></div>
+      <div class="sv-cap mo-box" data-g="hand" hidden><p class="sv-cap-h">손 — 혼자인 손 / 쉬는 손</p><p>예술적인 동작이나 요소가 가미된 손과 장신구를 착용한 손이 좋아서 골랐다</p></div>
+      <div class="sv-cap mo-box" data-g="road" hidden><p class="sv-cap-h">길 — 사람이 있는 길 / 떠나는 길</p><p>여행을 떠나거나 떠난 모습을 연상시키는 것이 좋았다</p></div>
+    </div>
+  </section>
+
+  <!-- ④-2 2장 사람 (7주 커스텀: 학생 요청) — 아코디언 대신 3단 판: 왼쪽 글 판(라벨 위 · 제목·소개·이유 1·2·3·가져올 한 가지 아래로) / 가운데 사진 두 장 위아래 / 오른쪽 세로 사진 한 장. custom.css · custom.js -->
+  <section class="mo-sec" id="s3b">
+    <div class="pp-board">
+      <div class="pp-text">
+        <p class="mo-label">2장 사람 · 김예림</p>
+        <div class="pp-body">
+          <h2 class="mo-h2">목소리의 폭이 넓고 연기력이 뛰어남</h2>
+          <div class="pp-item"><h3 class="pp-h">소개</h3><p>대한민국의 성우, 2018년 대원방송 성우극회 9기로 입사하였으며 2020년부터 프리랜서로 활동하고 있다. 자연스럽고 부드러운 목소리가 특징이며 변성의 폭이 넓다. 10대 소녀부터 청순한 역할, 능글맞은 역할, 열정적인 소년, 음울한 역할까지 다양한 연기를 선보인다.</p></div>
+          <div class="pp-item"><h3 class="pp-h">이유 1</h3><p>몰입감을 높여주는 뛰어난 연기력이라 골랐다</p><a class="mo-arrow" href="https://www.youtube.com/watch?v=X1vh_mjhvPI" target="_blank" rel="noopener">참고 영상</a></div>
+          <div class="pp-item"><h3 class="pp-h">이유 2</h3><p>목소리의 폭이 넓어 어느 캐릭터든 잘 어울리는 더빙을 할 수 있어서 골랐다</p><a class="mo-arrow" href="https://www.youtube.com/watch?v=RDiytnVNHpU" target="_blank" rel="noopener">참고 영상</a></div>
+          <div class="pp-item"><h3 class="pp-h">이유 3</h3><p>유튜브 등 여러 매체에서 나온 모습이 재밌다</p><a class="mo-arrow" href="https://www.youtube.com/watch?v=SIuV-3csOWk" target="_blank" rel="noopener">참고 영상</a></div>
+          <div class="pp-item"><h3 class="pp-h">가져올 한 가지</h3><p>캐릭터마다 목소리를 바꾸듯, 장르와 상황에 맞춰 UI의 톤을 바꾸는 폭</p></div>
+        </div>
+      </div>
+      <div class="pp-pair">
+        <figure class="pp-fig"><img src="assets/w05_photo1.webp" width="740" height="493" alt="2장 사람 이유 1 사진 1"></figure>
+        <figure class="pp-fig"><img src="assets/w05_photo2.jpg" width="600" height="400" alt="2장 사람 이유 2 사진 1"></figure>
+      </div>
+      <figure class="pp-fig pp-tall"><img src="assets/w05_photo3.jpg" width="447" height="447" alt="2장 사람 이유 3 사진 1"></figure>
+    </div>
+  </section>
+
+  <!-- ⑤ 3장 공간 — 시리즈: 화면 높이 사진 위에 흐린 유리 모듈 셋. 누른 공간의 01번 사진으로 배경이 바뀐다 -->
+  <section class="mo-series" id="s4">
+    <div class="mo-sec mo-sec-head">
+      <p class="mo-label">3장 공간</p>
+      <div class="mo-sec-r"></div>
+    </div>
+    <div class="mo-stage">
+      <div class="mo-glass">
+        <div class="mo-mods" data-mo="always">
+          <div class="mo-mod"><h3><button class="mo-mod-btn" type="button">자연, 하늘, 꽃</button></h3>
+            <div class="mo-mod-body"><div class="mo-mod-in"><p>휴식하거나 풍경을 구경한다.</p><p>휴식이 부족할 때나 바쁜 하루를 보냈을 때, 지쳐서 잠시 쉬고 싶을 때</p><p>가만히 앉아서 바람에 흔들리는 꽃이나 흘러가는 구름을 보는 것이 좋아서</p></div></div>
+            <figure class="mo-bg"><img src="assets/space1_01.jpg" width="4000" height="3000" alt="3장 공간 자연, 하늘, 꽃 사진 1"></figure></div>
+          <div class="mo-mod"><h3><button class="mo-mod-btn" type="button">여행의 추억</button></h3>
+            <div class="mo-mod-body"><div class="mo-mod-in"><p>여행을 가서 새로운 것을 보고, 경험하고, 추억을 쌓는다.</p><p>새로운 곳을 가고 싶어질 때나 일상에서 벗어나 풍경을 보고 싶어질 때</p><p>평소에 가보지 못한 곳이니까 좀 더 눈에 담아두고 싶어서</p></div></div>
+            <figure class="mo-bg"><img src="assets/space2_01.jpg" width="4000" height="2252" alt="3장 공간 여행의 추억 사진 1"></figure></div>
+          <div class="mo-mod"><h3><button class="mo-mod-btn" type="button">바닷속의 생물들</button></h3>
+            <div class="mo-mod-body"><div class="mo-mod-in"><p>쉽게 보지 못하는 해양생물을 보거나 때때로 체험 활동을 한다.</p><p>신기한 해양생물을 보고 싶을 때</p><p>바닷속에 직접 들어간 것 같은 느낌이 들고 여러 생물들이 움직이며 가끔 눈을 마주치는 것이 즐거워서</p></div></div>
+            <figure class="mo-bg"><img src="assets/space3_01.jpg" width="4000" height="2252" alt="3장 공간 바닷속의 생물들 사진 1"></figure></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 3장 공간 · 가까이 — 세부: 장면 탭 셋(공간 이름), 장면 사진 = 02번, + 점 카드 = 03~05번 -->
+  <section class="mo-sec" id="s5">
+    <p class="mo-label">3장 공간 · 가까이</p>
+    <div class="mo-sec-r mo-sec-r-tight">
+      <div class="mo-detail">
+        <div class="mo-scene"><h3 class="mo-scene-t">자연, 하늘, 꽃</h3>
+          <figure class="mo-scene-fig"><img src="assets/space1_02.jpg" width="4000" height="2252" alt="3장 공간 자연, 하늘, 꽃 사진 2"></figure>
+          <div class="mo-spot" style="--x:25%;--y:35%"><h4>자연, 하늘, 꽃</h4><p>전철 속에서 본 구름</p><figure><img src="assets/space1_03.jpg" width="3000" height="4000" alt="3장 공간 자연, 하늘, 꽃 사진 3" loading="lazy"></figure></div>
+          <div class="mo-spot" style="--x:70%;--y:30%"><h4>자연, 하늘, 꽃</h4><p>걷다가 올려다본 하늘</p><figure><img src="assets/space1_04.jpg" width="4000" height="2252" alt="3장 공간 자연, 하늘, 꽃 사진 4" loading="lazy"></figure></div>
+          <div class="mo-spot" style="--x:50%;--y:70%"><h4>자연, 하늘, 꽃</h4><p>돌담장 아래의 흰 꽃</p><figure><img src="assets/space1_05.jpg" width="2252" height="4000" alt="3장 공간 자연, 하늘, 꽃 사진 5" loading="lazy"></figure></div>
+        </div>
+        <div class="mo-scene"><h3 class="mo-scene-t">여행의 추억</h3>
+          <figure class="mo-scene-fig"><img src="assets/space2_02.jpg" width="4000" height="2252" alt="3장 공간 여행의 추억 사진 2"></figure>
+          <div class="mo-spot" style="--x:25%;--y:35%"><h4>여행의 추억</h4><p>막 도착한 날의 여행지</p><figure><img src="assets/space2_03.jpg" width="4000" height="2252" alt="3장 공간 여행의 추억 사진 3" loading="lazy"></figure></div>
+          <div class="mo-spot" style="--x:70%;--y:30%"><h4>여행의 추억</h4><p>하늘이 맑게 갠 날의 여행지</p><figure><img src="assets/space2_04.jpg" width="4000" height="2252" alt="3장 공간 여행의 추억 사진 4" loading="lazy"></figure></div>
+          <div class="mo-spot" style="--x:50%;--y:70%"><h4>여행의 추억</h4><p>배를 타고 보는 야경</p><figure><img src="assets/space2_05.jpg" width="4000" height="2252" alt="3장 공간 여행의 추억 사진 5" loading="lazy"></figure></div>
+        </div>
+        <div class="mo-scene"><h3 class="mo-scene-t">바닷속의 생물들</h3>
+          <figure class="mo-scene-fig"><img src="assets/space3_02.jpg" width="4000" height="3000" alt="3장 공간 바닷속의 생물들 사진 2"></figure>
+          <div class="mo-spot" style="--x:25%;--y:35%"><h4>바닷속의 생물들</h4><p>가라앉은 나무와 물고기</p><figure><img src="assets/space3_03.jpg" width="3000" height="4000" alt="3장 공간 바닷속의 생물들 사진 3" loading="lazy"></figure></div>
+          <div class="mo-spot" style="--x:70%;--y:30%"><h4>바닷속의 생물들</h4><p>이끼가 낀 바위와 물고기</p><figure><img src="assets/space3_04.jpg" width="4000" height="3000" alt="3장 공간 바닷속의 생물들 사진 4" loading="lazy"></figure></div>
+          <div class="mo-spot" style="--x:50%;--y:70%"><h4>바닷속의 생물들</h4><p>알록달록 열대어들</p><figure><img src="assets/space3_05.jpg" width="4000" height="3000" alt="3장 공간 바닷속의 생물들 사진 5" loading="lazy"></figure></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦-2 4장 물건 (7주 추가 · 7주 커스텀: 학생 요청) — 아코디언 대신 물건 다섯을 가로 한 줄로 모두 펼침. 칸 = 사진 → 번호·이름 → 언제·어떻게 → 고른 이유. 줄은 섹션 전폭(라벨 칸까지). custom.css · custom.js -->
+  <section class="mo-sec" id="s7">
+    <p class="mo-label">4장 물건</p>
+    <div class="mo-sec-r">
+      <h2 class="mo-h2">매일 손에 쥐고 다니며 혼자 쓰는, 단순하고 편한 물건</h2>
+    </div>
+    <ol class="ob-row">
+      <li class="ob-card mo-box"><figure class="ob-fig"><img src="assets/obj1_01.jpg" width="2252" height="4000" alt="4장 물건 무선 이어폰 사진 1"></figure>
+        <h3 class="ob-h"><span class="mo-num">01</span> 무선 이어폰</h3><p class="ob-when">핸드폰에 연결해서 음악을 들을 때 쓴다.</p><p class="ob-why">음질이 좋고 줄이 꼬이는 것이 없어서</p></li>
+      <li class="ob-card mo-box"><figure class="ob-fig"><img src="assets/obj2_01.jpg" width="4000" height="2252" alt="4장 물건 지갑 사진 1"></figure>
+        <h3 class="ob-h"><span class="mo-num">02</span> 지갑</h3><p class="ob-when">항상 들고 다니며 물건을 살 때 사용한다.</p><p class="ob-why">가족에게 선물받은 물건이라서.</p></li>
+      <li class="ob-card mo-box"><figure class="ob-fig ob-fit" style="--ob-bg: url(assets/obj3_01.jpg)"><img src="assets/obj3_01.jpg" width="4000" height="2252" alt="4장 물건 우산 사진 1"></figure>
+        <h3 class="ob-h"><span class="mo-num">03</span> 우산</h3><p class="ob-when">비가 올 때는 물론 햇빛이 뜨거울 때도 쓴다.</p><p class="ob-why">펼치고 접는 것이 모두 자동이고 양산 겸용으로도 사용할 수 있는 우산이라서</p></li>
+      <li class="ob-card mo-box"><figure class="ob-fig"><img src="assets/obj4_01.jpg" width="4000" height="2252" alt="4장 물건 스케치 노트 사진 1"></figure>
+        <h3 class="ob-h"><span class="mo-num">04</span> 스케치 노트</h3><p class="ob-when">아이디어가 떠오를 때 그리기 위해 쓴다.</p><p class="ob-why">종이가 두꺼워서 반대편이 잘 비치지 않고 크기가 작아 들고 다니기 편해서</p></li>
+      <li class="ob-card mo-box"><figure class="ob-fig"><img src="assets/obj5_01.jpg" width="4000" height="2252" alt="4장 물건 샤프 사진 1"></figure>
+        <h3 class="ob-h"><span class="mo-num">05</span> 샤프</h3><p class="ob-when">그림을 그릴 때 사용한다.</p><p class="ob-why">편하게 손에 잡히고 필기감이 부드럽고 좋아서</p></li>
+    </ol>
+  </section>
+
+  <!-- ⑦ 기준이 쌓이는 자리 — 연락 면. 칸 다섯(4주·5주·6주·7주·호불호 — 칸이 홀수라 호불호는 전폭 mo-full) + 세 곳의 공통점. 6주·7주 칸은 회고 뒤에 채운다 -->
+  <section class="mo-contact" id="s6">
+    <h2 class="mo-label">기준이<br>쌓이는 자리</h2>
+    <div class="mo-cells">
+      <div class="mo-cell"><span class="mo-cell-l">4주</span><span class="mo-cell-v">빛이 하늘을 물들이는 순간처럼, 평범한 장면이 특별해지는 때를 고른다</span></div>
+      <div class="mo-cell"><span class="mo-cell-l">5주</span><span class="mo-cell-v">보는 사람을 그 안으로 끌어들이는 몰입감을 기준으로 고른다</span></div>
+      <div class="mo-cell"><span class="mo-cell-l">6주</span><span class="mo-cell-v">사진을 보자마자 떠오르는 추억이 있는 것을 기준으로 고른다.</span></div>
+      <div class="mo-cell"><span class="mo-cell-l">7주</span><span class="mo-cell-v">기능이 좋거나 마음이 담긴 물건을 기준으로 고른다</span></div>
+      <div class="mo-cell mo-full"><span class="mo-cell-l">호불호</span><span class="mo-cell-v">사방이 꽉 막혀 있고 인파가 지나치게 많은 장소는 싫다</span></div>
+      <div class="mo-cell mo-full mo-msg"><p class="mo-cell-v">일상과 비일상 속의 아름다움.</p></div>
+    </div>
+  </section>
+</main>
+
+<!-- 끝줄 — 이름 / 메뉴 · 사진 출처 -->
+<footer class="mo-foot">
+  <div class="mo-foot-top">
+    <a class="mo-foot-logo" href="#top">원종은</a>
+  </div>
+  <div class="mo-foot-btm">
+    <div class="mo-foot-cols">
+      <p><a href="#s3">시선</a><br><a href="#s3b">사람</a><br><a href="#s4">공간</a><br><a href="#s7">물건</a><br><a href="#s6">기준</a></p>
+      <p class="mo-credit">사진: <a href="assets/CREDITS.tsv">assets/CREDITS.tsv</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="sig.js"></script>
+<script src="bgm.js"></script>
+<script src="hero.js"></script>
+<script src="custom.js"></script>
+</body>
+</html>
